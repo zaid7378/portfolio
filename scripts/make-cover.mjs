@@ -1,7 +1,7 @@
 // Builds public/portrait-cover.webp (the HOME BURN cover) from public/costume.png.
 // Removes a white OR fake "transparent" grey/white checkerboard background:
 // flood-fills from the edges through light, colourless pixels, then feathers the cut edge.
-//   node scripts/make-cover.mjs [src] [out] [--black]   (--black: background is solid black, not white)
+//   node scripts/make-cover.mjs [src] [out] [--black]   (--black: background is solid black, not white; --solid: fill holes inside the figure)
 import sharp from "sharp";
 import { statSync } from "node:fs";
 
@@ -38,6 +38,16 @@ while (stack.length) {
   if (x < w - 1) stack.push(i + 1);
   if (y > 0) stack.push(i - w);
   if (y < h - 1) stack.push(i + w);
+}
+// --solid: the figure has no real see-through gaps (arms touch the body), so fill every row
+// between its leftmost and rightmost subject pixel. Removes holes where dark shadows were
+// mistaken for background.
+if (process.argv.includes('--solid')) {
+  for (let y = 0; y < h; y++) {
+    let l = -1, r = -1;
+    for (let x = 0; x < w; x++) if (!bg[y * w + x]) { if (l < 0) l = x; r = x; }
+    for (let x = l + 1; x < r; x++) bg[y * w + x] = 0;
+  }
 }
 // feather: alpha by distance to background (2px)
 for (let i = 0; i < w * h; i++) {

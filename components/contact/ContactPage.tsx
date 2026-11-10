@@ -175,6 +175,13 @@ export default function ContactPage() {
           <span data-text={C.title}>{C.title}</span>
         </h2>
         <p className="ct-intro ct-reveal">{C.intro}</p>
+        <p className="ct-direct ct-reveal">
+          <a href={`mailto:${site.email}`} onMouseEnter={hoverTick}>{site.email}</a>
+          <span>/</span>
+          <a href={`https://wa.me/${site.phone.replace(/D/g, "")}`} target="_blank" rel="noreferrer" onMouseEnter={hoverTick}>
+            WHATSAPP {site.phone}
+          </a>
+        </p>
 
         <form className="ct-form" onSubmit={submit} noValidate>
           <div className="ct-row">

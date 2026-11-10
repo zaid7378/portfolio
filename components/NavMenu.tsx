@@ -174,7 +174,7 @@ export default function NavMenu({ index, label, placement = "top" }: Props) {
 
             <div className="nb-socials">
               {site.socials.map(([n, u]) => (
-                <a key={n} href={u} target="_blank" rel="noreferrer" aria-label={n} className="nb-anim" onMouseEnter={hoverTick} tabIndex={menu ? 0 : -1}>
+                <a key={n} href={u} target={u.startsWith("http") ? "_blank" : undefined} rel="noreferrer" aria-label={n} className="nb-anim" onMouseEnter={hoverTick} tabIndex={menu ? 0 : -1}>
                   <SocialIcon name={n} />
                 </a>
               ))}

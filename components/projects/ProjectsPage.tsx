@@ -179,7 +179,7 @@ export default function ProjectsPage() {
                 <p className="pj-meta">
                   <b>{pad(i + 1)}</b>
                   <span>
-                    {p.category} · {p.service} · {p.year}
+                    {[p.category, p.service, p.year].filter(Boolean).join(" · ")}
                   </span>
                 </p>
                 <h2>{p.title.toUpperCase()}</h2>

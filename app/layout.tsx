@@ -37,8 +37,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ZAID'S DEV — Creative Developer",
-  description: "Hand-coded immersive interfaces: WebGL, WordPress and motion.",
+  title: "Muhammad Zaid — Web Developer | ZAID'S DEV",
+  description: "Muhammad Zaid — web developer in Lahore building high-performance WordPress, PHP and Next.js websites, e-commerce stores and AI chatbots.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
